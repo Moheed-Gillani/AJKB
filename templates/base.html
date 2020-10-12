@@ -1,0 +1,288 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>AJK-DAILYPOST</title>
+      <link rel="shortcut icon" href="https://thoseicons.com/assets/img/04.svg" type="image/x-icon">
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.footer{
+    background: #000;
+    color:white;
+    
+    .links{
+      ul {list-style-type: none;}
+      li a{
+        color: white;
+        transition: color .2s;
+        &:hover{
+          text-decoration:none;
+          color:#4180CB;
+          }
+      }
+    }  
+    .about-company{
+      i{font-size: 25px;}
+      a{
+        color:white;
+        transition: color .2s;
+        &:hover{color:#4180CB}
+      }
+    } 
+    .location{
+      i{font-size: 18px;}
+    }
+    .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
+  }
+body {
+    font-family: "Helvetica Neue",sans-serif;
+    font-weight: lighter;
+}
+
+header {
+    width: 100%;
+    height: 100vh;
+    background: url(https://i.ytimg.com/vi/gn41AiFNpag/maxresdefault.jpg) no-repeat 50% 50% ,rgba(0,0,0,0.5); 
+    background-size: cover;
+
+ 
+}
+
+.content {
+    width: 94%;
+    margin: 4em auto;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: justify;
+}
+
+
+.logo {
+    line-height: 60px;
+    position: fixed;
+    float: left;
+    margin: 16px 46px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    line-height: 60px;
+}
+
+nav ul {
+    line-height: 60px;
+    list-style: none;
+    background: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    color: #fff;
+    padding: 0;
+    text-align: right;
+    margin: 0;
+    padding-right: 40px;
+    transition: 1s;
+}
+
+nav.black ul {
+    background: #000;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 16px 40px;;
+}
+
+nav ul li a {
+    font-family: Brush Script MT, Brush Script Std, cursive;
+    text-decoration: none;
+    color: #eaeaea;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.menu-icon {
+    line-height: 60px;
+    width: 100%;
+    background: #000;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 15px 24px;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+}
+
+@media(max-width: 786px) {
+
+    .logo {
+          position: fixed;
+          top: 0;
+          margin-top: 16px;
+        
+    }
+
+    nav ul {
+          max-height: 0px;
+          background: #000;
+    }
+
+    nav.black ul {
+          background: #000;
+    }
+
+    .showing {
+          max-height: 34em;
+    }
+
+    nav ul li {
+          box-sizing: border-box;
+          width: 100%;
+          padding: 24px;
+          text-align: center;
+    }
+
+    .menu-icon {
+          display: block;
+    }
+
+}
+
+</style>   
+</head>
+   <body style="background-color: #fff;">
+      <div class="wrapper">
+         <header>
+            <nav>
+               <div class="menu-icon">
+                  <i class="fa fa-bars fa-2x"></i>
+               </div>
+               <div class="logo">
+            <h5 style="font-family: Brush Script MT, Brush Script Std, cursive; font-size:30px;">AJK-BLOGS</h5>
+               </div>
+               <div class="menu">
+                  <ul>
+                     <li><a href="{% url 'home' %}">Home</a></li>
+                     {% if request.user.is_authenticated %}
+
+                     <li><a href="{% url 'CreateBlog' user.id %}">blogs+</a></li>
+                     <li><a href="{% url 'Myblogs' user.id %}">My blogs </a></li>
+                  
+                    
+                     {%  if user.profiles.Image.url  %}
+              
+                     <li>
+                        <a href="{% url 'editprofile' user.profiles.id %}"><img src="{{ user.profiles.Image.url  }}" class="rounded-circle" style="width: 35px; height:35px;">Profile</a>
+                    </li>
+                    <li><a href="{% url 'logout' %}">Signnout</a></li>
+                   
+                     {% endif %}
+                     {% else %}
+                     <li><a href="{% url 'register' %}">Signup</a></li>
+                     <li><a href="{% url 'login' %}">Signin</a></li>
+                  
+
+                     {% endif %}
+                    
+                  </ul>
+               </div>
+            </nav>
+       
+         </header>
+
+    </div>
+</body>
+</html>
+
+
+
+      
+         {% block content %}
+
+
+
+
+
+
+
+
+
+         {% endblock %}
+
+         <div class="mt-5 pt-5 pb-5 footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-5 col-xs-12 about-company">
+                  <h2>AJK-BLOGS</h2>
+                  <p class="pr-5 text-white-50">Share your knowledge regarding to AJK any time anywhere for those who love to write.Follow me on </p>
+                  <p><a href="https://www.facebook.com/moheed.gillani.7/" target="_blank"><i class="fa fa-facebook-square mr-1"></i></a><a href="https://www.instagram.com/moheed_gillani/" target="_blank"><i class="fa fa-instagram"> </i></a><a href="https://github.com/Moheed-Gillani" target="_blank"> <i class="fa fa-github"></i></a></p>
+                </div>
+                <div class="col-lg-3 col-xs-12 links">
+                  <h4 class="mt-lg-0 mt-sm-3">Socail links</h4>
+                    <ul class="m-0 p-0">
+                      <li>- <a target="_blank" href="https://www.fiverr.com/share/jek3wo">Fiverr</a></li>
+                      <li>- <a  target="_blank" href="https://www.upwork.com/o/profiles/users/~0189b3008f8916c828/">Upwork</a></li>
+                      <li>- <a target="_blank" href="https://www.instagram.com/moheed_gillani/">Instagram</a></li>
+                      <li>- <a  target="_blank" href="https://www.facebook.com/moheed.gillani.7/">Facebook</a></li>
+                      <li>- <a target="_blank" href="https://github.com/Moheed-Gillani">Github</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-xs-12 location">
+                  <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+                  <p>Dhariyan syedan, Muzaffarabad AJK , upper muhallah Qazain</p>
+                  <p class="mb-0"><i class="fa fa-phone mr-3"></i>+923414148482</p>
+                  <p><i class="fa fa-envelope-o mr-3"></i>syedmoheedulhassan@gmail.com</p>
+                </div>
+              </div>
+              <div class="row mt-5">
+                <div class="col copyright">
+                  <p class=""><small class="text-white-50">Ajkb.pythonanywhere.com© 2020. All Rights Reserved.</small></p>
+                </div>
+              </div>
+            </div>
+            </div>
+ 
+
+<script>
+  $(document).ready(function() {
+    $(".menu-icon").on("click", function() {
+          $("nav ul").toggleClass("showing");
+    });
+});
+
+// Scrolling Effect
+
+$(window).on("scroll", function() {
+    if($(window).scrollTop()) {
+          $('nav').addClass('black');
+    }
+
+    else {
+          $('nav').removeClass('black');
+    }
+})
+</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

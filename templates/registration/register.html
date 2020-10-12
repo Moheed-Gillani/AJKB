@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="content text-secondary">
+<center><h3><span  style="font-family: Brush Script MT, Brush Script Std, cursive;">Create Your  profile to be the part of us </span></h1></center>
+{% if error %}
+<span class="text-warning">{{ error }}</span>
+{% endif %}
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <input type="submit" value="Signup" name="" class="btn btn-secondary btn-lg">
+</form>
+<p class="text-lead" style="font-size: 15px;"> If you already have an account please <a href="{% url 'login' %}" class="text-dark">Click here</a>  to regster yourself</p>
+</div>
+{% endblock %}

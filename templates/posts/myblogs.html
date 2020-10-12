@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% for blogs in blogs %}
+{% if blogs %}
+<hr style="height:20px;">
+<div class="d-flex  flex-column">
+    <center><h1 s class="text-light" style="font-family: Brush Script MT, Brush Script Std, cursive;">{{ blogs.headline }}</h1>
+        <img src="{{ blogs.image.url }}" class="img img-fluid img-thumbnail rounded rounded-circle" style="width: 200px; height:200px;">
+        <p class="text-warning" style="font-family: Brush Script MT, Brush Script Std, cursive; font-size:30px;">Created on : {{ blogs.date }} by <span>{{ blogs.posted_by.username }}</span> </p>
+    <p class="text-secondary" >{{ blogs.text  }}</span> </p>
+    <a class="btn btn-dark" href="{% url 'editblog' blogs.id %}">Update</a> 
+    <a class="btn btn-warning" href="{% url 'deleteblog' blogs.id %}">Delete</a> 
+</center>
+    <br>
+{% else %}
+<p class="text-warning" style="font-family: Brush Script MT, Brush Script Std, cursive; font-size:30px;">You haven't posted any Blogs yet </span> </p>
+{% endif %}
+{% endfor %}
+</div>
+{% endblock %}

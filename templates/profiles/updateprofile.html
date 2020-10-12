@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<div class="content text-secondary">
+    <center>
+        <h2 style="font-family: Brush Script MT, Brush Script Std, cursive;">Name:{{ object.Name }}</h2>
+        <img src="{{ object.Image.url  }}" class="img img-fluid rounded-circle" style="width: 300px; height:300px;">
+    </center>
+    <center>
+        <h3><span style="font-family: Brush Script MT, Brush Script Std, cursive;">Change your profile settings</span></h1>
+        </center>
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <input type="submit" value="Create Profile" name="Profile" class="btn btn-dark btn-lg">
+</form>
+<ul>
+    <li><a href="{% url 'login' %}" class="text-secondary">Signin with another account</a></li>
+    <li><a href="{% url 'password_change' %}" class="text-secondary">To change password click here</a>
+    </li>
+</uL>
+</div>
+
+{% endblock %}

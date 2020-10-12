@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="content text-secondary">
+    <center>
+        <h3><span style="font-family: Brush Script MT, Brush Script Std, cursive;">Login  to share your thoughts and moments </span></h1>
+        </center>
+
+          
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <input type="submit" value="Signin" name="Signin" class="btn btn-dark btn-lg">
+</form>
+
+<p class="text-lead" style="font-size: 15px;"> If you dont have an account please <a href="{% url 'register' %}" class="text-dark">Click here</a>  to regster yourself</p>
+</div>
+
+{% endblock %}
